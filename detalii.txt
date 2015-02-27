@@ -1,6 +1,7 @@
 Pentru a seta baza de date:
-1. De rulat ./reset.sh   (data fixtures)
-2  Import la fisierul sql in db (db_carwash.sql)
+ De rulat ./reset.sh   (data fixtures)
+ sau
+ Import la fisierul sql in db (db_carwash.sql)
 
 
 Pentru autentificare, se merge pe ruta /login si se adauga credentialele:
