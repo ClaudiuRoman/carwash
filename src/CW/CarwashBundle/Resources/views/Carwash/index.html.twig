@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ app.user.username }} orders</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Order id</th>
+                        <th>Created</th>
+                        <th>Client</th>
+                        <th>Receipt nr.</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.createdAt |date('Y-m-d') }}</td>
+                            <td>{{ order.client.licencePlate }}</td>
+                            <td>{{ order.receipt ? order.receipt.id : '-' }}</td>
+                            <td>{{ order.receipt ? 'Completed' : 'In progress' }}</td>
+                            {% if not order.receipt %}
+                                <td>
+                                    <a class="btn btn-default" href="{{ path('carwash_complete', {'id': order.id}) }}">Complete order</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" href="{{ path('carwash_manage', {'id': order.id}) }}">Edit</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" href="{{ path('carwash_delete', {'id': order.id}) }}">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation">
+                    {{ knp_pagination_render(orders) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

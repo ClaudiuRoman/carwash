@@ -1,0 +1,82 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block fos_user_content %}
+    <form id="registration-form" role="form"
+          action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+        <div class="col-md-12 sign-up-wrapper fr-show">
+            <div class="wrong-login error">
+                {{ form_errors(form) }}
+                {{ form_errors(form.username) }}
+                {{ form_errors(form.plainPassword.first) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+            <h1>Register</h1>
+
+            <div class="hr"></div>
+            <div class="sign-up-form-wrapper">
+                <div class="wrapper-error">
+                    <div class="input-wrapper">
+                        <label for="sign-up-email"><i class="fa fa-envelope "></i></label>
+                        {{ form_widget(form.email, {'attr': {'placeholder': 'Email address', 'id': 'sign-up-email'}}) }}
+                    </div>
+                    <!--input-wrapper-->
+                    <div class="email-error error"><i class="fa fa-exclamation-triangle"></i> Please enter a valid email
+                        address.
+                    </div>
+                </div>
+
+                <div class="wrapper-error">
+                    <div class="input-wrapper">
+                        <label for="sign-up-username"><i class="fa fa-user"></i></label>
+                        {{ form_widget(form.username, {'attr': {'placeholder': 'Username', 'id': 'sign-up-username'}}) }}
+
+                    </div>
+                    <!--input-wrapper-->
+                    <div class="username-error error"><i class="fa fa-exclamation-triangle"></i>This username is already
+                        in use, please try another.
+                    </div>
+                </div>
+
+                <div class="wrapper-error">
+                    <div class="input-wrapper">
+                        <label for="sign-up-password"><i class="fa fa-lock"></i></label>
+                        {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password', 'id': 'sign-up-password'}}) }}
+
+                    </div>
+                    <!--input-wrapper-->
+                    <div class="password-error error"><i class="fa fa-exclamation-triangle"></i>Please enter a password
+                    </div>
+                </div>
+
+                <div class="wrapper-error">
+                    <div class="input-wrapper">
+                        <label for="sign-up-confirm-password"><i class="fa fa-lock"></i></label>
+                        {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat password', 'id': 'sign-up-confirm-password'}}) }}
+
+                    </div>
+                    <!--input-wrapper-->
+                    <div class="password-error error"><i class="fa fa-exclamation-triangle"></i>Please re-enter your
+                        password.
+                    </div>
+                </div>
+
+                <div class="submit-wrapper clearfix">
+                    <input type="submit" id="sign-up-submit" value="Sign Up">
+                </div>
+
+
+            </div>
+            <!--sing-up-form-wrapper-->
+            <div class="hr"></div>
+            <div class="sign-up-terms">
+                <p> By registering you confirm that you accept the <a href="">Terms and Conditions</a> and <a href="">Privacy
+                        Policy</a></p>
+            </div>
+            <!--sign-up-terms-->
+        </div>
+        <!--sign-up-wrapper-->
+        {{ form_rest(form) }}
+    </form>
+{% endblock fos_user_content %}

@@ -1,0 +1,38 @@
+User story:
+    - Un angajat se logheaza in aplicatie folosind username si password. Acestea sunt stocate in tabela users
+    - Dupa autentificare ajunge pe pagina unde poate vedea toate comenzile pe care acesta le-a preluat si care sunt in curs de desfasurare sau care au fost finalizate
+    - Pentru a adauga o comanda, apasa pe Add Order:
+        - Angajatul introduce numarul de inmatriculare si selecteaza produsele dorite
+            - In cazul in care numarul de inmatriculare nu exista in baza de date, acesta este adaugat
+     - In cazul in care angajatul doreste sa editeze, o comanda deja creeata, apasa pe Edit sau poate sa stearga o comanda ce a fost nefinalizata
+     - Pentru a creea un bon, angajatul apasa pe Complete Order, acesta are o previzualizare ca sa verifice ca totul e corect iar dupa ca sa genereze bonul, apasa pe butonul "Print receipt"
+     - La previzualizare, se verifica de asemenea daca clientul are abonament sau daca se incadreaza intr-o anumita promotie
+
+Cum e gandita baza de date, legaturi intre entitati:
+Entity\User:
+    - nume: string
+    - prenume : string
+Entity\Receipt:
+    - createdAt: datetime
+    - value: float
+    - OneToOne order
+Entity\Product:
+    - name
+    - price
+    - ManyToMany orders
+Entity\Client
+    - licencePlate : string
+    - hasSubscription : boolean
+    - startedAt
+    - OneToMany orders
+    - washCounter integer
+Entity\Order:
+    - createdAt datetime
+    - ManyToOne user
+    - OneToOne receipt
+    - ManyToMany products
+    - ManyToOne client
+Entity\Promotion:
+    - name: string
+    - criteria: integer
+    - active: boolean

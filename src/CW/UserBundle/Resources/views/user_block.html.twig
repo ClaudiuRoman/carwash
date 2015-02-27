@@ -1,0 +1,8 @@
+{% block user_block %}
+    {% if app.user %}
+        {{ app.user }}
+
+        <br/><br/>
+        <a class="btn btn-info" href="{{ url('fos_user_security_logout') }}">Logout</a>
+    {% endif %}
+{% endblock user_block %}

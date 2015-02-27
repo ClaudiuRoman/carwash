@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ order.id ? 'Edit order' : 'Add new order'  }}</h1>
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_row(form.client.licencePlate) }}
+                    {{ form_errors(form.client) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.products, {attr: { style: "width: 400px;"} }) }}</div>
+                <button class="btn btn-default" type="submit">{{ order.id ? 'Edit order' : 'Add new order' }}</button>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $("#carwash_order_products").select2({
+                placeholder: "Select products",
+                allowClear: true
+            });
+        });
+    </script>
+{% endblock %}

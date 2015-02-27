@@ -1,0 +1,9 @@
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [CWCarwashBundle]
+        directories: ["%kernel.root_dir%/../src"]
+
+services:
+    em:
+        alias: doctrine.orm.entity_manager
