@@ -1,3 +1,12 @@
+Pentru a seta baza de date:
+1. De rulat ./reset.sh   (data fixtures)
+2  Import la fisierul sql in db (db_carwash.sql)
+
+
+Pentru autentificare, se merge pe ruta /login si se adauga credentialele:
+ user-1
+ 12345
+
 User story:
     - Un angajat se logheaza in aplicatie folosind username si password. Acestea sunt stocate in tabela users
     - Dupa autentificare ajunge pe pagina unde poate vedea toate comenzile pe care acesta le-a preluat si care sunt in curs de desfasurare sau care au fost finalizate
